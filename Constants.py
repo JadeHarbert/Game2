@@ -1,9 +1,9 @@
 import pygame
 
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
+SCREEN_WIDTH = 1440
+SCREEN_HEIGHT = 900
 MUSIC_FILENAME = "Sounds/Arcade_Kid.mp3"
-BACKGROUND_FILENAME = "Images/Padded_Room_Resized.jpg"
+BACKGROUND_FILENAME = "Images/Joust_Background_Updated.jpg"
 FONT_NAME = pygame.font.match_font('arial')
-BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
 

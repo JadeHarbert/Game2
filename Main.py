@@ -31,9 +31,9 @@ def initialize():
 
     pygame.init()
     pygame.mixer.init()
-    pygame.mixer.music.load(Constants.MUSIC_FILENAME)
-    pygame.mixer.music.play(loops=-1)
-    pygame.mixer.music.set_volume(1.0)
+    # pygame.mixer.music.load(Constants.MUSIC_FILENAME)
+    # pygame.mixer.music.play(loops=-1)
+    # pygame.mixer.music.set_volume(1.0)
 
     screen = pygame.display.set_mode((Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT), 0, 32)
     background = pygame.image.load(Constants.BACKGROUND_FILENAME).convert()
@@ -68,7 +68,7 @@ def start_screen():
 # Function that simplifies drawing text on a screen\
 def draw_text(surface, text, size, temp_x, temp_y):
     font = pygame.font.Font(Constants.FONT_NAME, size)
-    text_surface = font.render(text, True, Constants.BLACK)
+    text_surface = font.render(text, True, Constants.WHITE)
     text_rect = text_surface.get_rect()
     text_rect.midtop = (temp_x, temp_y)
     surface.blit(text_surface, text_rect)
