@@ -31,9 +31,9 @@ def initialize():
 
     pygame.init()
     pygame.mixer.init()
-    pygame.mixer.music.load(Constants.MUSIC_FILENAME)
-    pygame.mixer.music.play(loops=-1)
-    pygame.mixer.music.set_volume(1.0)
+    # pygame.mixer.music.load(Constants.MUSIC_FILENAME)
+    # pygame.mixer.music.play(loops=-1)
+    # pygame.mixer.music.set_volume(1.0)
 
     screen = pygame.display.set_mode((Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT), 0, 32)
     background = pygame.image.load(Constants.BACKGROUND_FILENAME).convert()
@@ -68,15 +68,15 @@ def start_screen():
 # Function that simplifies drawing text on a screen\
 def draw_text(surface, text, size, temp_x, temp_y):
     font = pygame.font.Font(Constants.FONT_NAME, size)
-    text_surface = font.render(text, True, Constants.BLACK)
+    text_surface = font.render(text, True, Constants.WHITE)
     text_rect = text_surface.get_rect()
     text_rect.midtop = (temp_x, temp_y)
     surface.blit(text_surface, text_rect)
 
 
-def update_groups(left_key, right_key, passed_time):
+def update_groups(left_key, right_key, up_key, down_key, passed_time):
     character_group.clear(screen, background)
-    character_group.update(left_key, right_key, passed_time)
+    character_group.update(left_key, right_key, up_key, down_key, passed_time)
     character_group.draw(screen)
     pygame.display.update()
 
@@ -99,7 +99,7 @@ def main():
             time_passed = clock.tick(60)
             time_passed_seconds = time_passed / 1000.0
 
-            update_groups(pygame.K_LEFT, pygame.K_RIGHT, time_passed_seconds)
+            update_groups(pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, time_passed_seconds)
 
 
 if __name__ == "__main__":
