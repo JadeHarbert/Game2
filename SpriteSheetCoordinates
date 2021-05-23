@@ -1,0 +1,99 @@
+CyborgIdle = {192x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+
+CyborgRunning = {288x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+Frame5 = {x = 192, y = 0, width = 48, height = 48}
+Frame6 = {x = 240, y = 0, width = 48, height = 48}
+
+CyborgAttack = {288x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+Frame5 = {x = 192, y = 0, width = 48, height = 48}
+Frame6 = {x = 240, y = 0, width = 48, height = 48}
+
+CyborgJump = {192x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+
+CyborgDoubleJump = {288x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+Frame5 = {x = 192, y = 0, width = 48, height = 48}
+Frame6 = {x = 240, y = 0, width = 48, height = 48}
+
+CyborgDeath = {288x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+Frame5 = {x = 192, y = 0, width = 48, height = 48}
+Frame6 = {x = 240, y = 0, width = 48, height = 48}
+
+
+
+BikerIdle = {192x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+
+BikerRunning = {288x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+Frame5 = {x = 192, y = 0, width = 48, height = 48}
+Frame6 = {x = 240, y = 0, width = 48, height = 48}
+
+BikerAttack = {288x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+Frame5 = {x = 192, y = 0, width = 48, height = 48}
+Frame6 = {x = 240, y = 0, width = 48, height = 48}
+
+BikerJump = {192x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+
+BikerDoubleJump = {288x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+Frame5 = {x = 192, y = 0, width = 48, height = 48}
+Frame6 = {x = 240, y = 0, width = 48, height = 48}
+
+BikerDeath = {288x48}
+Frame1 = {x = 0, y = 0, width = 48, height = 48}
+Frame2 = {X = 48, y = 0, width = 48, height = 48}
+Frame3 = {x = 96, y = 0, width = 48, height = 48}
+Frame4 = {x = 144, y = 0, width = 48, height = 48}
+Frame5 = {x = 192, y = 0, width = 48, height = 48}
+Frame6 = {x = 240, y = 0, width = 48, height = 48}
+
+Platforms = {100x625}
+topMid = {x = 1, y = 42, width = 368, height = 50}
+topLeft = {x = 1, y = 143, width = 166, height = 34}
+topRight = {x = 0, y = 200, width = 126, height = 56}
+botMid = {x = 1, y = 283, width = 268, height = 39}
+botLeft = {x = 0, y = 351, width = 196, height = 43}
+botRight = {x = 0, y = 424, width = 299, height = 82}
+bottom = {x = 0, y = 537, width = 1000, height = 88}
+

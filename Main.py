@@ -4,7 +4,7 @@ Jade Harbert
 CSC 235
 5-19-21
 """
-from typing import Union, Any, Type
+from typing import Union, Type
 
 import pygame
 from pygame.locals import *
@@ -15,6 +15,8 @@ from pygame.time import Clock
 
 import Constants
 from CharacterSprite import CharacterSprite
+from CyborgSprite import CyborgSprite
+from PlatformSprite import PlatformSprite
 
 screen: Union[Surface, SurfaceType]
 background: Union[Surface, SurfaceType]
@@ -22,12 +24,18 @@ background_rect: Union[Rect, RectType, None]
 clock: Clock
 character: CharacterSprite
 character_group: Type[Group]
+enemy: CyborgSprite
+enemy_group: Type[Group]
+platform_group: Type[Group]
+mainPlatform = PlatformSprite
 
 
 # Function to initialize pygame base elements
 def initialize():
     global screen, background, background_rect, clock
     global character_group, character
+    global enemy, enemy_group
+    global mainPlatform, platform_group
 
     pygame.init()
     pygame.mixer.init()
@@ -43,6 +51,15 @@ def initialize():
     character_group = pygame.sprite.Group()
     character = CharacterSprite()
     character_group.add(character)
+
+    platform_group = pygame.sprite.Group()
+    mainPlatform = PlatformSprite()
+    platform_group.add(mainPlatform)
+    platform_group.draw(screen)
+
+    enemy_group = pygame.sprite.Group()
+    enemy = CyborgSprite()
+    enemy_group.add(enemy)
 
 
 # Function that displays the start screen and is responsible
@@ -78,6 +95,14 @@ def update_groups(left_key, right_key, up_key, down_key, passed_time):
     character_group.clear(screen, background)
     character_group.update(left_key, right_key, up_key, down_key, passed_time)
     character_group.draw(screen)
+
+    enemy_group.clear(screen, background)
+    enemy_group.update()
+    enemy_group.draw(screen)
+
+    platform_group.clear(screen, background)
+    platform_group.draw(screen)
+
     pygame.display.update()
 
 
@@ -100,6 +125,15 @@ def main():
             time_passed_seconds = time_passed / 1000.0
 
             update_groups(pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, time_passed_seconds)
+
+            # hits = pygame.sprite.groupcollide(character_group, platform_group, False, False)
+            # for hit in hits:
+            #   print(mainPlatform.rect.top)
+            #    hit.collision(character.collision(mainPlatform.rect.top))
+            hits = pygame.sprite.spritecollide(character, platform_group, False)
+            if hits:
+                character.rect.bottom = hits[0].rect.top
+                print(hits[0].rect.top)
 
 
 if __name__ == "__main__":
