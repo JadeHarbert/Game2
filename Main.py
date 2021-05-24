@@ -1,18 +1,16 @@
 """
-Main.py
+Main.py - Driver class for a platforming fighting game
 Jade Harbert
 CSC 235
 5-19-21
 """
 from typing import Union, Type
-
 import pygame.sprite
 from pygame.locals import *
 from pygame.rect import RectType
 from pygame.sprite import Group
 from pygame.surface import SurfaceType, Surface
 from pygame.time import Clock
-
 from Constants import *
 from CharacterSpriteNew import CharacterSprite
 from CyborgSprite import CyborgSprite
@@ -53,7 +51,7 @@ def initialize():
     pygame.mixer.music.set_volume(0.01)
 
     lose_life_sound = pygame.mixer.Sound(LOSE_LIFE_FILE)
-    lose_life_sound.set_volume(0.1)
+    lose_life_sound.set_volume(0.03)
 
     game_over_sound = pygame.mixer.Sound(GAME_OVER_FILE)
     game_over_sound.set_volume(0.01)
@@ -74,6 +72,7 @@ def initialize():
 
     enemy_group = pygame.sprite.Group()
 
+    # Gets the values from the PLATFORM_LIST dictionary in Constants
     p = PLATFORM_LIST.get("main")
     mainPlatform = PlatformSprite(p[0], p[1], p[2], p[3])
     p = PLATFORM_LIST.get("midLeft")
@@ -105,7 +104,9 @@ def initialize():
     respawn_enemies(0.2)
 
 
+# Respawns the enemies with a speed of the speed argument
 def respawn_enemies(speed):
+    # Gets the values from the PLATFORM_LIST dictionary in Constants.py
     p = PLATFORM_LIST.get("midLeft")
     e = CyborgSprite(p[0] + (p[2] / 2), p[1], speed)
     enemy_group.add(e)
@@ -170,13 +171,16 @@ def start_screen():
                 waiting = False
 
 
+# Function that displays the end screen and based on the is_winner argument, will display
+# different screens
 def end_screen(is_winner):
     pygame.mixer.music.stop()
     screen.blit(background, background_rect)
     if is_winner:
         draw_text(screen, "Congratulations, you beat the game!!", 64, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6)
     else:
-        draw_text(screen, "You ran out of lives :(", 64, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6)
+        draw_text(screen, "You ran out of lives! You made it to level " + str(current_level), 64, SCREEN_WIDTH / 2,
+                  SCREEN_HEIGHT / 6)
 
     draw_text(screen, "Thank you for playing!", 22, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     draw_text(screen, "Press a key to quit", 18, SCREEN_WIDTH / 2, SCREEN_HEIGHT * 3 / 4)
@@ -203,6 +207,8 @@ def draw_text(surface, text, size, temp_x, temp_y):
     surface.blit(text_surface, text_rect)
 
 
+# Function that updates all of the Sprite groups
+# and draws them on the screen
 def update_groups(left_key, right_key, up_key, down_key, passed_time, character_reference):
     character_group.clear(screen, background)
     character_group.update(left_key, right_key, up_key, down_key, passed_time)
@@ -218,6 +224,7 @@ def update_groups(left_key, right_key, up_key, down_key, passed_time, character_
     pygame.display.update()
 
 
+# Function that draws the player lives and level on the screen
 def update_scores():
     screen.blit(background, background_rect)
     draw_text(screen, "Player Lives: " + str(character.get_lives()), 20, 65, 15)
@@ -244,18 +251,21 @@ def main():
                 time_passed_seconds = time_passed / 1000.0
                 update_groups(pygame.K_a, pygame.K_d, pygame.K_w, pygame.K_f, time_passed_seconds, character)
 
+                # Responsible for character and platform collision
                 if character.vel.y >= 0:
                     hits = pygame.sprite.spritecollide(character, platform_group, False)
                     if hits:
                         character.pos.y = hits[0].rect.top
                         character.vel.y = 0
 
+                # Responsible for enemy and platform collision
                 for e in enemyList:
                     hits = pygame.sprite.spritecollide(e, platform_group, False)
                     if hits:
                         e.pos.y = hits[0].rect.top
                         e.vel.y = 0
 
+                # Responsible for the collisions between character and the enemies
                 hits = pygame.sprite.spritecollide(character, enemy_group, False)
                 if hits:
                     if character.pos.y < hits[0].pos.y or character.attacking:
@@ -266,11 +276,13 @@ def main():
                         character.death()
                         lose_life_sound.play()
 
+                # Determines whether or not all the enemies have been killed
                 if len(enemy_group) == 0:
                     is_level_clear = True
                     current_level += 1
                     update_scores()
 
+                # Displays the end_screen based on the ending condition
                 if character.get_lives() < 1:
                     game_over_sound.play()
                     end_screen(False)
@@ -278,6 +290,7 @@ def main():
                     winner_sound.play()
                     end_screen(True)
 
+                # Updates the displayed scored if they're different
                 if temp_lives != character.get_lives():
                     temp_lives = character.get_lives()
                     update_scores()

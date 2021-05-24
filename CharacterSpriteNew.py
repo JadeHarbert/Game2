@@ -1,3 +1,9 @@
+"""
+CharacterSpriteNew.py - Sprite class for a biker character to be used as the protagonist in Main.py
+Jade Harbert
+CSC 235
+5-19-21
+"""
 from pygame.constants import *
 
 from Constants import *
@@ -49,6 +55,7 @@ class CharacterSprite(pygame.sprite.Sprite):
         self.count = 0
         self.lives = PLAYER_LIVES
 
+    # Loads all of the sprite sheet images
     def load_images(self):
         self.idle_frames = [self.idle_sheet.get_image(0, 0, 48, 48),
                             self.idle_sheet.get_image(48, 0, 48, 48),
@@ -87,6 +94,7 @@ class CharacterSprite(pygame.sprite.Sprite):
         for frame in self.death_frames:
             frame.set_colorkey(BLACK)
 
+    # Animates all of the different movements
     def animate(self):
         now = pygame.time.get_ticks()
 
@@ -132,6 +140,7 @@ class CharacterSprite(pygame.sprite.Sprite):
                 self.dying = False
                 self.respawn()
 
+    # Updates the sprite based on input and time
     def update(self, left_key, right_key, up_key, attack_key, secs):
         keys = pygame.key.get_pressed()
 
@@ -166,14 +175,17 @@ class CharacterSprite(pygame.sprite.Sprite):
         self.pos += self.vel + 0.5 * self.acc
         self.rect.midbottom = self.pos
 
+        # Allows the sprite to go off screen and be on other side
         if self.pos.x < 0 - self.rect.width / 2:
             self.pos.x = SCREEN_WIDTH
         elif self.pos.x > SCREEN_WIDTH + self.rect.width / 2:
             self.pos.x = 0
 
+    # Jump function
     def jump(self):
         self.vel.y = -15
 
+    # Attack function
     def attack(self, num):
         if num == 1:
             self.attacking = True
@@ -184,6 +196,7 @@ class CharacterSprite(pygame.sprite.Sprite):
             self.attacking = False
             self.idle = True
 
+    # Death function
     def death(self):
         self.dying = True
         self.running = False
@@ -191,20 +204,18 @@ class CharacterSprite(pygame.sprite.Sprite):
         self.attacking = False
         self.vel = vec(0, 0)
 
+    # Respawn function
     def respawn(self):
         self.lives -= 1
-        # self.start_time = pygame.time.get_ticks()
         self.pos = vec(2000, 2000)
         self.idle = True
-        # now = pygame.time.get_ticks()
-        # while self.start_time + 2000 > now:
-        #    now = pygame.time.get_ticks()
-
         self.pos = vec(SCREEN_WIDTH / 2, 500)
         self.count = 0
 
+    # Teleports the character to the starting location
     def next_level(self):
         self.pos = vec(SCREEN_WIDTH / 2, 500)
 
+    # Returns lives
     def get_lives(self):
         return self.lives
