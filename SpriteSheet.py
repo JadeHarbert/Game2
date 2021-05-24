@@ -1,5 +1,11 @@
+"""
+SpriteSheet.py - Class that takes in a spritesheet and returns a portion of that
+                 image based on the inputted x, y, width, and height
+Jade Harbert
+CSC 235
+5-19-21
+"""
 import pygame
-import Constants
 
 
 class SpriteSheet:
@@ -10,5 +16,4 @@ class SpriteSheet:
     def get_image(self, x, y, width, height):
         image = pygame.Surface((width, height))
         image.blit(self.spritesheet, (0, 0), (x, y, width, height))
-        #image = pygame.transform.scale(image, (width * 2, height * 2))
         return image

@@ -1,3 +1,9 @@
+"""
+Constants.py - file that holds Constants for Game2
+Jade Harbert
+CSC 235
+5-19-21
+"""
 import pygame
 
 SCREEN_WIDTH = 1000

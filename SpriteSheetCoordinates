@@ -1,3 +1,7 @@
+"""
+Displays the coordinates of all the spritesheets used for Game2
+"""
+
 CyborgIdle = {192x48}
 Frame1 = {x = 0, y = 0, width = 48, height = 48}
 Frame2 = {X = 48, y = 0, width = 48, height = 48}

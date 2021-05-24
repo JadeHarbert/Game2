@@ -1,3 +1,9 @@
+"""
+CyborgSprite.py - Sprite class for a Cyborg character to be used as enemies in Main.py
+Jade Harbert
+CSC 235
+5-19-21
+"""
 from Constants import *
 from SpriteSheet import SpriteSheet
 
@@ -39,6 +45,7 @@ class CyborgSprite(pygame.sprite.Sprite):
         self.rect.bottom = 381
         self.acceleration = acceleration
 
+    # Loads all of the sprite sheet images
     def load_images(self):
 
         self.idle_frames = [self.idle_sheet.get_image(0, 0, 48, 48),
@@ -67,6 +74,7 @@ class CyborgSprite(pygame.sprite.Sprite):
         for frame in self.death_frames:
             frame.set_colorkey(BLACK)
 
+    # Animates all of the different movements
     def animate(self):
         now = pygame.time.get_ticks()
 
@@ -101,10 +109,13 @@ class CyborgSprite(pygame.sprite.Sprite):
                 self.done_dying = True
                 self.kill()
 
+    # Updates the sprite based on time
     def update(self, character):
         self.animate()
         self.acc = vec(0, 0.5)
 
+        # if the protagonist is within 150 pixels in the x direction and 50 pixels in the y direction, then the
+        # sprite will move towards the character
         if abs(character.pos.x - self.pos.x) < 150 and abs(character.pos.y - self.pos.y) < 50 and not self.dying:
             if character.pos.x > self.pos.x:
                 self.acc.x = self.acceleration
@@ -126,11 +137,13 @@ class CyborgSprite(pygame.sprite.Sprite):
         elif self.pos.x > SCREEN_WIDTH + self.rect.width / 2:
             self.pos.x = 0
 
+    # Function for dying
     def death(self):
         self.dying = True
         self.running = False
         self.idle = False
         self.vel = vec(0, 0)
 
+    # Returns self.done_dying
     def get_done_dying(self):
         return self.done_dying
